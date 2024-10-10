@@ -1,19 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Game } from '../shared/models/game';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GAMES_URL } from '../shared/constants/urls';
+
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
-  static fetchGames(): Game[] {
-    throw new Error('Method not implemented.');
-  }
+  private gamesUrl = GAMES_URL;
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  fetchGames(searchGame: any): Observable<Game[]>{
-    return this.http.get<Game[]>(GAMES_URL);
+  fetchGames(): Observable<any> {
+    return this.http.get<any>(this.gamesUrl); // Make sure the URL is correct
   }
 }

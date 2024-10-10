@@ -1,10 +1,14 @@
-<ul>
-  <li *ngFor="let game of games">
-    <a routerLink="games/{{ game.id }}">
-      <img [src]="game.cover" [alt]="game.name" />
-      <div class="name">
-        {{ game.name }}
-      </div>
-    </a>
-  </li>
-</ul>
+<div *ngIf="games.length > 0; else noGames">
+    <h1>Games List</h1>
+    <ul>
+      <li *ngFor="let game of games">
+        <h2>{{ game.name }}</h2> <!-- Assuming each game object has a 'title' property -->
+        <p>{{ game.description }}</p> <!-- Assuming each game object has a 'description' property -->
+        <p>Release Date: {{ game.releaseDate }}</p> <!-- Adjust according to your data structure -->
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noGames>
+    <h2>No games available</h2>
+  </ng-template>

@@ -1,29 +1,31 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule, ActivatedRoute } from '@angular/router';
-import { Game } from '../../../shared/models/game';
-import { GameService } from '././../../../services/game.service';
-import { Observable } from 'rxjs';
+import { GameService } from '../../../services/game.service';
 
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
+  standalone:true,
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  games: Game[] = [];
+  games: any[] = []; // Initialize the games array
 
-  constructor(
-    private gameService: GameService,
-    activatedRoute: ActivatedRoute
-  ) {
-    activatedRoute.params.subscribe((params) => {});
-    this.games = GameService.fetchGames();
-    let GamessObservable: Observable<Game[]>;
+  constructor(private gameService: GameService) { }
+
+  ngOnInit(): void {
+    this.loadGames(); // Fetch games when the component initializes
   }
 
-  ngOnInit(): void {}
+  loadGames(): void {
+    this.gameService.fetchGames().subscribe({
+      next: (data) => {
+        this.games = data.data; // Ensure you're accessing the correct structure of the response
+        console.log('Games:', this.games); // Log the fetched games
+      },
+      error: (error) => {
+        console.error('Error fetching games:', error);
+      }
+    });
+  }
 }

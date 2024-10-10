@@ -1,6 +1,9 @@
-const BASE_URL = 'http://localhost:3000';
+import { environment } from "../../../environment/environment";
 
-export const GAMES_URL = BASE_URL + '/games';
+// src/app/shared/constants/urls.ts
+
+export const GAMES_URL = `${environment.apiUrl}/games`;
+
 export const GAMES_BY_ID_URL = GAMES_URL + '/';
-export const SEARCH_URL = BASE_URL + '/search';
+export const SEARCH_URL = `${environment.apiUrl}/search`;
 export const SEARCH_BY_NAME_URL = SEARCH_URL + '/';
