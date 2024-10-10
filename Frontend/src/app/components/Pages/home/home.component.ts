@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { GameService } from '../../../services/game.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   standalone:true,
+  imports: [CommonModule],
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
