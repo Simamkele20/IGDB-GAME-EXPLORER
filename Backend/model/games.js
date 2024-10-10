@@ -2,7 +2,7 @@ import { AuthenticateUser } from "../middleware/AuthenticateUser.js";
 
 class Games {
   constructor() {
-    this.apiUrl = process.env.API;
+    this.apiUrl = process.env.Games_URL;
     this.myHeaders = new Headers();
     this.myHeaders.append("Accept", "application/json");
     this.myHeaders.append("Client-ID", process.env.CLIENT_ID);

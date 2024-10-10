@@ -3,6 +3,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 import { gameRouter } from './controller/GameController.js';
+import { searchRouter } from './controller/SearchController.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,6 +13,7 @@ const port = 3000;
 
 app.use(express.static(path.join(__dirname, './static')));
 app.use('/games', gameRouter)
+app.use('/search', searchRouter)
 app.get('^/$|/game', (req, res) => {
     res.status(200).sendFile(path.join(__dirname, './static/index.html'));
 });
