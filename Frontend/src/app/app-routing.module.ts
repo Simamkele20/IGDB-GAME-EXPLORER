@@ -4,13 +4,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/Pages/home/home.component';
 
 const routes: Routes = [
-  {path: 'games', component:HomeComponent},
+  {path: '', component:HomeComponent},
   {path: 'search/', component:HomeComponent}
 ];
 
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, [RouterModule.forRoot(routes)]],
+  imports: [CommonModule,
+     [RouterModule.forRoot(routes)]],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
