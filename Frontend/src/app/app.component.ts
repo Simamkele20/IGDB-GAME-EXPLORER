@@ -4,6 +4,7 @@ import { HeaderComponent } from "./components/partials/header/header.component";
 import { HomeComponent } from './components/Pages/home/home.component';
 
 
+
 @Component({
   selector: 'app-root',
   standalone: true,

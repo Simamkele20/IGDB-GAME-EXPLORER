@@ -1,33 +1,32 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { GameService } from '../../../services/game.service';
 import { CommonModule } from '@angular/common';
 
-
 @Component({
   selector: 'app-home',
-  standalone:true,
-  imports: [CommonModule],
+  standalone: true,
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  imports: [CommonModule]
 })
 export class HomeComponent implements OnInit {
-  games: any[] = []; // Initialize the games array
+  games: any; // Define the type of games as necessary
 
-  constructor(private gameService: GameService) { }
+  constructor(private gameService: GameService) {}
 
   ngOnInit(): void {
-    this.loadGames(); // Fetch games when the component initializes
+    this.loadGames();
   }
 
   loadGames(): void {
-    this.gameService.fetchGames().subscribe({
-      next: (data) => {
-        this.games = data.data; // Ensure you're accessing the correct structure of the response
-        console.log('Games:', this.games); // Log the fetched games
+    this.gameService.fetchGames().subscribe(
+      (data) => {
+        this.games = data; 
       },
-      error: (error) => {
-        console.error('Error fetching games:', error);
+      (error) => {
+        console.error('Error fetching games:', error); 
       }
-    });
+    );
   }
 }

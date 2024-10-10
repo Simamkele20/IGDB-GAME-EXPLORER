@@ -2,10 +2,9 @@
     <h1>Games List</h1>
     <ul>
       <li *ngFor="let game of games">
-        <h2>{{ game.title }}</h2> <!-- Assuming each game object has a 'title' property -->
-        <p>{{ game.description }}</p> <!-- Assuming each game object has a 'description' property -->
-        <p>Release Date: {{ game.releaseDate }}</p> <!-- Adjust according to your data structure -->
-      </li>
+        <h2>{{ game.name }}</h2> <!-- Assuming each game object has a 'title' property -->
+    
+      </li> 
     </ul>
   </div>
   
