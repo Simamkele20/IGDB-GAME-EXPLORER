@@ -13,7 +13,7 @@ export class GameService {
 
   constructor(private http:HttpClient) { }
 
-  fetchGames(): Observable<Game[]>{
+  fetchGames(searchGame: any): Observable<Game[]>{
     return this.http.get<Game[]>(GAMES_URL);
   }
 }
