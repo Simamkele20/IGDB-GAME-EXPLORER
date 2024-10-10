@@ -1,0 +1,10 @@
+<ul>
+  <li *ngFor="let game of games">
+    <a routerLink="games/{{ game.id }}">
+      <img [src]="game.cover" [alt]="game.name" />
+      <div class="name">
+        {{ game.name }}
+      </div>
+    </a>
+  </li>
+</ul>
