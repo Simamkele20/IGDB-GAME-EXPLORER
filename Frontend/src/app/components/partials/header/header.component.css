@@ -1,15 +1,24 @@
+*,
+::before,
+::after{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 a{
+    margin-left: 20px;
     text-decoration: none;
     color: aliceblue;
 }
 header{
-    margin: -8px;
-    padding: 5px;
+    margin-top: -5px;
+    padding: 15px;
  background-color: #222831;;
 }
 input{
-margin: 5px;
-    margin-left: 230px;
+/* margin: 5px; */
+    margin-left: 250px;
     width: 550px;
     height: 25px;
 }
