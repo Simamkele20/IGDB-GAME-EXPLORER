@@ -5,6 +5,7 @@ import { Game } from '../../../shared/models/game';
 import { GameService } from '././../../../services/game.service';
 import { Observable } from 'rxjs';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,9 +18,9 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private gameService: GameService,
-    activetedRoute: ActivatedRoute
+    activatedRoute: ActivatedRoute
   ) {
-    activetedRoute.params.subscribe((params) => {});
+    activatedRoute.params.subscribe((params) => {});
     this.games = GameService.fetchGames();
     let GamessObservable: Observable<Game[]>;
   }
