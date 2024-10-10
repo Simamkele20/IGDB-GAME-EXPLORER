@@ -57,6 +57,8 @@ class Games {
 
     try {
       const response = await fetch(this.apiUrl, requestOptions);
+      
+
       const result = await response.json();
       res.json({
         status: res.statusCode,
