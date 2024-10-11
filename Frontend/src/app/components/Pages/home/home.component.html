@@ -1,13 +1,13 @@
 <div *ngIf="games.length > 0; else noGames">
-    <h1>Games List</h1>
-    <ul>
-      <li *ngFor="let game of games">
-        <h2>{{ game.name }}</h2> <!-- Assuming each game object has a 'title' property -->
-    
-      </li> 
-    </ul>
-  </div>
-  
-  <ng-template #noGames>
-    <h2>No games available</h2>
-  </ng-template>
+  <h4>Welcome to IGDB GAME EXPLORER</h4>
+  <ul>
+    <li *ngFor="let game of games">
+      <h6>{{ game.name }}</h6>
+      <h2>{{ game.cover }}</h2>
+    </li>
+  </ul>
+</div>
+
+<ng-template #noGames>
+  <h2>No games available</h2>
+</ng-template>

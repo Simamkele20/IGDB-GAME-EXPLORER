@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environment/environment';
-
+import { GameResponse } from '../shared/models/game';
 
 @Injectable({
-  providedIn: 'root', // You can also provide it in the component if it's standalone
+  providedIn: 'root',
 })
 export class GameService {
-  private apiUrl =  `${environment.apiUrl}`; // Replace with your actual API URL
+  private apiUrl = `${environment.Games_URL}`;
 
   constructor(private http: HttpClient) {}
 
-  fetchGames(): Observable<any[]> { // Specify the return type as needed
-    return this.http.get<any[]>(this.apiUrl); // Adjust the type according to your API response
+  fetchGames(): Observable<GameResponse> {
+    return this.http.get<GameResponse>(this.apiUrl);
   }
 }

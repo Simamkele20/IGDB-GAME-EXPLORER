@@ -1,14 +1,9 @@
-// src/app/app.server.module.ts
-
 import { NgModule } from '@angular/core';
 import { ServerModule } from '@angular/platform-server';
-import { AppModule } from './app.module'; // Import your main app module
+import { AppModule } from './app.module';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  imports: [
-    AppModule, // Import the main app module
-    ServerModule, // Import the server module
-  ],
-
+  imports: [AppModule, ServerModule, AppRoutingModule],
 })
 export class AppServerModule {}
