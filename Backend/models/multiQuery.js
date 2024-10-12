@@ -22,6 +22,7 @@ class MultiQuery {
    
       
 `;
+
     const requestOptions = {
       method: "POST",
       headers: this.myHeaders,
@@ -57,7 +58,7 @@ class MultiQuery {
     const gameName = req.params.name;
     const query = `query games "GameSearch" {
         fields name, platforms.name, genres.name, summary, first_release_date, cover.url;
-        where name = ${gameName};
+        search ${gameName};
   };
    
       
@@ -98,9 +99,8 @@ class MultiQuery {
     const query = `query games "GameDetailView" {
         fields name, platforms.name, genres.name, summary, release_dates.human, cover.url,involved_companies,  involved_companies.publisher,websites.url, game_modes.name, videos.video_id;
           where id = ${gameId};
-  };
-   
-      
+          
+  };      
 `;
 
     const requestOptions = {
@@ -109,6 +109,7 @@ class MultiQuery {
       body: query,
       redirect: "follow",
     };
+
     try {
       const response = await fetch(this.apiUrl, requestOptions);
 

@@ -2,9 +2,7 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-
-import { searchRouter } from "./controllers/SearchController.js";
-import { multiQueryRouter } from "./controllers/MultiQueryController.js";
+import { multiQueryRouter } from "./controller/MultiQueryController.js";
 
 import cors from "cors";
 
@@ -24,12 +22,13 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "./static")));
-app.use("/search", searchRouter);
-app.use("/multiquery", multiQueryRouter);
+
+
+app.use("/", multiQueryRouter);
 app.get("^/$|/game", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "./static/index.html"));
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+  console.log(`Server is running on http://localhost:${port}/`);
 });
