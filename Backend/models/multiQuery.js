@@ -82,9 +82,10 @@ class MultiQuery {
       }
 
       const result = await response.json();
+   
       res.json({
         status: res.statusCode,
-        data: result,
+        data: filteredResults,
       });
     } catch (error) {
       console.error("Error fetching Multi-Query:", error);
