@@ -1,16 +1,25 @@
+export interface Platform {
+  id: number;
+  name: string;
+}
+
 export interface Game {
   id: number;
   name: string;
-  age_ratings?: Array<any>;
-  aggregated_rating?: number;
-  aggregated_rating_count?: number;
-  alternative_names?: Array<string>;
-  category?: number;
-  cover?: number;
-  created_at?: number;
+  summary: string;
+  first_release_date?: number;
+  cover?: {
+    url: string;
+  };
+  genres?: { id: number; name: string }[];
+  platforms?: Platform[];
+
 }
 
 export interface GameResponse {
   status: number;
-  data: Game[];
+  data: {
+    name: string;
+    result: Game[];
+  }[];
 }

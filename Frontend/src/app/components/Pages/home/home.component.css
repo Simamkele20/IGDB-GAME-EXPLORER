@@ -3,6 +3,39 @@
 *::before,
 *::after {
   margin: 0;
-  padding: 0;
+  padding-bottom: 4px;
   box-sizing: border-box;
+  background-color: #1e3e62;
+  color: aliceblue;
+}
+
+h5 {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+img {
+  margin-bottom: 5px;
+}
+
+.game-list {
+  margin-left: 44px;
+}
+
+.game-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  ); /* Creates responsive grid */
+  gap: 70px; /* Space between items */
+}
+
+.game-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+  text-align: center;
 }

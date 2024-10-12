@@ -1,13 +1,25 @@
-<div *ngIf="games.length > 0; else noGames">
-  <h4>Welcome to IGDB GAME EXPLORER</h4>
-  <ul>
-    <li *ngFor="let game of games">
-      <h6>{{ game.name }}</h6>
-      <h2>{{ game.cover }}</h2>
-    </li>
-  </ul>
-</div>
+<div class="home-container">
+  <h5>Welcome to IGDB GAME EXPLORER</h5>
 
-<ng-template #noGames>
-  <h2>No games available</h2>
-</ng-template>
+  <ng-container *ngIf="games.length > 0; else noGames">
+    <div class="game-list">
+      <div class="game-container">
+        <div class="game-item" *ngFor="let game of games">
+          <img
+            [src]="
+              game.cover
+                ? 'https:' + game.cover.url
+                : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
+            "
+            alt="{{ game.name }} cover"
+          />
+          <p>{{ game.name }}</p>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-template #noGames>
+    <h2>No games available</h2>
+  </ng-template>
+</div>

@@ -27,7 +27,9 @@ export class HomeComponent implements OnInit {
   loadGames(): void {
     this.gameService.fetchGames().subscribe(
       (response: GameResponse) => {
-        this.games = response.data;
+        if (response.data.length > 0) {
+          this.games = response.data[0].result;
+        }
         this.cdr.detectChanges();
       },
       (error) => {

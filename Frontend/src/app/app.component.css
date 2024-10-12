@@ -6,3 +6,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+footer {
+  background-color: #000000;
+  color: aliceblue;
+  padding-bottom: 5px;
+  padding-top: 10px;
+  text-align: center;
+}
