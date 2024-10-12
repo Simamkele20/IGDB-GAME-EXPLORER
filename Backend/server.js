@@ -2,8 +2,10 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import { dirname } from "path";
-import { gameRouter } from "./controller/GameController.js";
-import { searchRouter } from "./controller/SearchController.js";
+
+import { searchRouter } from "./controllers/SearchController.js";
+import { multiQueryRouter } from "./controllers/MultiQueryController.js";
+
 import cors from "cors";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -11,6 +13,7 @@ const __dirname = dirname(__filename);
 
 const app = express();
 const port = +process.env.PORT || 4000
+
 
 app.use(
   cors({
@@ -21,8 +24,8 @@ app.use(
 );
 
 app.use(express.static(path.join(__dirname, "./static")));
-app.use("/games", gameRouter);
 app.use("/search", searchRouter);
+app.use("/multiquery", multiQueryRouter);
 app.get("^/$|/game", (req, res) => {
   res.status(200).sendFile(path.join(__dirname, "./static/index.html"));
 });

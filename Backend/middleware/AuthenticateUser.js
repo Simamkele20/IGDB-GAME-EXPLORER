@@ -26,7 +26,7 @@ class AuthenticateUser {
     }
 
     const data = await response.json();
-    return data.access_token; 
+    return data.access_token;
   }
 }
 
