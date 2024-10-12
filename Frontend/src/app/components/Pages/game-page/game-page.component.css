@@ -1,0 +1,24 @@
+/* Universal Selector */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding-bottom: 4px;
+  box-sizing: border-box;
+  background-color: #1e3e62;
+  color: aliceblue;
+  
+}
+
+
+.GameName{
+    color:#a9caf8 ;
+    font-weight:bold ;
+  }
+
+.game-item {
+   padding-top: 30px;
+    align-items: center;
+    text-align: center;
+  }
+  

@@ -17,10 +17,10 @@ export class GameService {
   }
 
   searchGame(gameName: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/games/search/${gameName}`);
+    return this.http.get(`${this.apiUrl}/search/${gameName}`);
   }
 
-  fetchGameById(gameId: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/games/${gameId}`);
+  fetchGameById(gameId: string): Observable<GameResponse> {
+    return this.http.get<GameResponse>(`${this.apiUrl}/${gameId}`);
   }
 }

@@ -9,10 +9,21 @@
   color: aliceblue;
 }
 
+
+.GameName{
+  color:#a9caf8 ;
+  font-weight:bold ;
+}
+
+a {
+  text-decoration: none;
+}
 h5 {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
+  color:#0b192c ;
+  font-weight: bold;
 }
 
 img {

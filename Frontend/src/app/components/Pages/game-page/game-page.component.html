@@ -1,0 +1,14 @@
+<div class="game-container" *ngIf="game">
+  <div class="game-item">
+    <img
+      [src]="
+        game.cover
+          ? 'https:' + game.cover.url.replace('thumb', 'cover_big')
+          : 'https://i.ibb.co/Xx8MWN1/placeholder-264x374.png'
+      "
+      alt="{{ game.name }} cover"
+    />
+
+    <h3 class="GameName">{{ game.name }}</h3>
+  </div>
+</div>

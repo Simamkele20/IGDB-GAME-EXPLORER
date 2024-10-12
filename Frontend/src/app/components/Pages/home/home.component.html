@@ -3,8 +3,11 @@
 
   <ng-container *ngIf="games.length > 0; else noGames">
     <div class="game-list">
+ 
       <div class="game-container">
+     
         <div class="game-item" *ngFor="let game of games">
+          <a [routerLink]="['/games/', game.id]">
           <img
             [src]="
               game.cover
@@ -13,8 +16,11 @@
             "
             alt="{{ game.name }} cover"
           />
-          <p>{{ game.name }}</p>
+          <p class="GameName">{{ game.name }}</p>
+          
+        </a>
         </div>
+   
       </div>
     </div>
   </ng-container>

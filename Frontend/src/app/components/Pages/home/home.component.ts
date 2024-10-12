@@ -5,13 +5,15 @@ import { CommonModule } from '@angular/common';
 import { Game } from '../../../shared/models/game';
 import { ChangeDetectorRef } from '@angular/core';
 import { GameResponse } from '../../../shared/models/game';
+import { RouterOutlet, RouterModule  } from '@angular/router';
+
 
 @Component({
   selector: 'app-home',
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, RouterOutlet,RouterModule],
 })
 export class HomeComponent implements OnInit {
   games: Game[] = [];

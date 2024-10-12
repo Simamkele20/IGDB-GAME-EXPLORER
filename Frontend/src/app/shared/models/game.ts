@@ -23,3 +23,11 @@ export interface GameResponse {
     result: Game[];
   }[];
 }
+
+
+export interface GameByIdResponse {
+  status: number;
+  data: Array<{
+    result: Game[];
+  }>;
+}
