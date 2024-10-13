@@ -9,6 +9,7 @@ import { GameResponse } from '../shared/models/game';
 })
 export class GameService {
   private apiUrl = `${environment.Games_URL}`;
+  private searchUrl= `${environment.MultiQuery_URL}`
 
   constructor(private http: HttpClient) {}
 
@@ -16,8 +17,8 @@ export class GameService {
     return this.http.get<GameResponse>(this.apiUrl);
   }
 
-  searchGame(gameName: string): Observable<any> {
-    return this.http.get(`${this.apiUrl}/search/${gameName}`);
+  searchGame(searchTerm: string): Observable<any> {
+    return this.http.get(`${this.searchUrl}/search/${searchTerm}`);
   }
 
   fetchGameById(gameId: string): Observable<GameResponse> {

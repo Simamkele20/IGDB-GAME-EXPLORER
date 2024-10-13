@@ -31,7 +31,7 @@ export class GamePageComponent {
     const gameId = this.route.snapshot.paramMap.get('id');
     if (gameId) {
       this.gameService.fetchGameById(gameId).subscribe(
-        (response: GameByIdResponse  ) => {
+        (response: GameByIdResponse) => {
           if (response.data && response.data.length > 0) {
             const gameData = response.data[0].result.find(
               (game: Game) => game.id === parseInt(gameId)

@@ -8,7 +8,13 @@
       "
       alt="{{ game.name }} cover"
     />
-
     <h3 class="GameName">{{ game.name }}</h3>
+    <p *ngIf="game.release_dates && game.release_dates.length > 0">
+      {{ game.release_dates[0].human }}
+    </p>
+
+    <p *ngIf="!game.release_dates || game.release_dates.length === 0">
+      Not yet released.
+    </p>
   </div>
 </div>

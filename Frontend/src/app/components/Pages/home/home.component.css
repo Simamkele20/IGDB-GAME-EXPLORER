@@ -9,10 +9,9 @@
   color: aliceblue;
 }
 
-
-.GameName{
-  color:#a9caf8 ;
-  font-weight:bold ;
+.GameName {
+  color: #a9caf8;
+  font-weight: bold;
 }
 
 a {
@@ -22,7 +21,7 @@ h5 {
   text-align: center;
   padding-top: 30px;
   padding-bottom: 30px;
-  color:#0b192c ;
+  color: #000000;
   font-weight: bold;
 }
 

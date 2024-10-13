@@ -1,26 +1,23 @@
+
 <div class="home-container">
   <h5>Welcome to IGDB GAME EXPLORER</h5>
 
   <ng-container *ngIf="games.length > 0; else noGames">
     <div class="game-list">
- 
       <div class="game-container">
-     
-        <div class="game-item" *ngFor="let game of games">
+        <div class="game-item" *ngFor="let game of filteredGames$ | async">
           <a [routerLink]="['/games/', game.id]">
-          <img
-            [src]="
-              game.cover
-                ? 'https:' + game.cover.url
-                : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
-            "
-            alt="{{ game.name }} cover"
-          />
-          <p class="GameName">{{ game.name }}</p>
-          
-        </a>
+            <img
+              [src]="
+                game.cover
+                  ? 'https:' + game.cover.url
+                  : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
+              "
+              alt="{{ game.name }} cover"
+            />
+            <p class="GameName">{{ game.name }}</p>
+          </a>
         </div>
-   
       </div>
     </div>
   </ng-container>

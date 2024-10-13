@@ -7,18 +7,16 @@
   box-sizing: border-box;
   background-color: #1e3e62;
   color: aliceblue;
-  
 }
 
-
-.GameName{
-    color:#a9caf8 ;
-    font-weight:bold ;
-  }
+.GameNamem,
+.GameName {
+  color: #a9caf8;
+  font-weight: bold;
+}
 
 .game-item {
-   padding-top: 30px;
-    align-items: center;
-    text-align: center;
-  }
-  
+  padding-top: 30px;
+  align-items: center;
+  text-align: center;
+}

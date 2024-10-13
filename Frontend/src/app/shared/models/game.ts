@@ -3,11 +3,17 @@ export interface Platform {
   name: string;
 }
 
+export interface ReleaseDate {
+  id: number;
+  human: string;
+}
+
+
 export interface Game {
   id: number;
   name: string;
   summary: string;
-  first_release_date?: number;
+  release_dates?: ReleaseDate[];
   cover?: {
     url: string;
   };

@@ -9,3 +9,8 @@
 ::-webkit-scrollbar {
   display: none;
 }
+
+
+body{
+  background-color: #1e3e62;
+}
