@@ -1,6 +1,10 @@
 <app-header (searchTermChange)="onSearchTermChange($event)"></app-header>
 <div class="home-container">
   <h5>Welcome to IGDB GAME EXPLORER</h5>
+  <div *ngIf="loading" class="spinner-container">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div *ngIf="!loading">
 
   <div class="toggle-container">
     <mat-button-toggle-group name="genres" (change)="toggleGenre($event.value)">
@@ -47,11 +51,11 @@
                 style="width: 300px; height: 300px"
               />
               <mat-card-title>{{ game.name }}</mat-card-title>
-              <mat-card-subtitle
-                ><span class="Headings">Genres:</span>
-                {{ getGenres(game) }}</mat-card-subtitle
-              >
+            
               <mat-card-content>
+                <p>
+                  <span class="Headings">Genres:</span> {{ getGenres(game) }}
+                </p>
                 <p>
                   <span class="Headings">Platforms:</span>
                   {{ getPlatforms(game) }}
@@ -70,7 +74,10 @@
     </div>
   </ng-container>
 
+  
+
   <ng-template #noGames>
     <h2>No games found matching your criteria.</h2>
   </ng-template>
+</div>
 </div>

@@ -1,25 +1,57 @@
-<app-header (searchTermChange)="onSearchTermChange($event)"></app-header>
-
-<div class="game-container" *ngIf="game; else loading">
-  <div class="game-item">
-    <img
-      [src]="
-        game.cover
-          ? 'https:' + game.cover.url.replace('thumb', 'cover_big')
-          : 'https://i.ibb.co/Xx8MWN1/placeholder-264x374.png'
-      "
-      alt="{{ game.name }} cover"
-    />
-    <h3 class="GameName">{{ game.name }}</h3>
-    <p *ngIf="game.release_dates && game.release_dates.length > 0">
-      {{ game.release_dates[0].human }}
-    </p>
-    <p *ngIf="!game.release_dates || game.release_dates.length === 0">
-      Not yet released.
-    </p>
-  </div>
+<app-header></app-header>
+<div *ngIf="loading" class="spinner-container">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
+<div *ngIf="!loading">
+  <div class="game-container" *ngIf="game">
+    <div class="game-item">
+      <div class="game-image">
+        <img
+          [src]="
+            game.cover
+              ? 'https:' + game.cover.url.replace('thumb', 'cover_big')
+              : 'https://i.ibb.co/Xx8MWN1/placeholder-264x374.png'
+          "
+          alt="{{ game.name }} cover"
+        />
+      </div>
+      <div class="game-info">
+        <h3 class="GameName">{{ game.name }}</h3>
+    
+        <h4>Release Dates:</h4>
+        <ul>
+          <li *ngFor="let release of game.release_dates">{{ release.human }}</li>
+        </ul>
+    
+        <h4>Game Modes:</h4>
+        <ul>
+          <li *ngFor="let mode of game.game_modes">{{ mode.name }}</li>
+        </ul>
+    
+        <h4>Genres:</h4>
+        <ul>
+          <li *ngFor="let genre of game.genres">{{ genre.name }}</li>
+        </ul>
+    
+        <h4>Platforms:</h4>
+        <ul>
+          <li *ngFor="let platform of game.platforms">{{ platform.name }}</li>
+        </ul>
+    
+        <h4>User Rating:</h4>
+        <div>
+          <span *ngFor="let star of [1, 2, 3, 4, 5]">
+            <i class="fa" [ngClass]="{'fa-star': star <= userRating, 'fa-star-o': star > userRating}"></i>
+          </span>
+          <p *ngIf="game?.rating_count">({{ game.rating_count }} ratings)</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<ng-template #loading>
-  <div>Loading game details...</div>
-</ng-template>
+  <div class="button-container">
+    <button (click)="goBack()">Go Back</button>
+  </div>
+
+  
+</div>

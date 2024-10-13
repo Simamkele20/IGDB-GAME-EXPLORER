@@ -6,7 +6,13 @@
   box-sizing: border-box;
   color: aliceblue;
 }
-
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  padding-top: 70px;
+}
 .Headings {
   color: #a9caf8;
   font-weight: bold;

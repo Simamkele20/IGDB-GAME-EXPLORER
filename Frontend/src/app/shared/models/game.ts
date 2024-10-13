@@ -3,6 +3,11 @@ export interface Platform {
   name: string;
 }
 
+export interface GameModes{
+  id:number;
+  name:string;
+}
+
 export interface ReleaseDate {
   id: number;
   human: string;
@@ -19,6 +24,9 @@ export interface Game {
   };
   genres?: { id: number; name: string }[];
   platforms?: Platform[];
+  game_modes?: GameModes[];
+  rating_count: number;
+  rating?:number;
 
 }
 

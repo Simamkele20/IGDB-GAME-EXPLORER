@@ -11,11 +11,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material.module';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     MaterialModule,
     ReactiveFormsModule,
+    FormsModule,
     AppComponent,
     HomeComponent,
     CommonModule,

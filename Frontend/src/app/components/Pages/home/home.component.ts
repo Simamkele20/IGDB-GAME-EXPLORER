@@ -9,6 +9,7 @@ import { HeaderComponent } from '../../partials/header/header.component';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 export interface ReleaseDate {
   id: number;
@@ -28,6 +29,7 @@ export interface ReleaseDate {
     FormsModule,
     MatButtonToggleModule,
     MatCardModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -39,6 +41,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   uniqueGenres: string[] = [];
   uniquePlatforms: string[] = [];
   uniqueReleaseYears: string[] = [];
+  loading: boolean = true;
   private queryParamsSubscription: Subscription | undefined;
 
   searchTermCtrl = new FormControl('');
@@ -54,6 +57,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.gameService.fetchGames().subscribe((response: GameResponse) => {
       this.games = response.data[0].result;
       this.filteredGames = this.games;
+      this.loading = false;
       this.extractUniqueGenres();
       this.extractUniquePlatforms();
       this.extractUniqueReleaseYears();
@@ -136,23 +140,40 @@ export class HomeComponent implements OnInit, OnDestroy {
   toggleGenre(genre: string): void {
     const index = this.selectedGenres.indexOf(genre);
     if (index >= 0) {
+      // Remove genre if it's already selected
       this.selectedGenres.splice(index, 1);
     } else {
+      // Add genre to selected genres
       this.selectedGenres.push(genre);
     }
-    this.filterGames(this.searchTermCtrl.value || '');
+    
+    // Update filtered games
+    this.updateFilteredGames();
   }
-
+  
   togglePlatform(platform: string): void {
     const index = this.selectedPlatforms.indexOf(platform);
     if (index >= 0) {
+      // Remove platform if it's already selected
       this.selectedPlatforms.splice(index, 1);
     } else {
+      // Add platform to selected platforms
       this.selectedPlatforms.push(platform);
     }
-    this.filterGames(this.searchTermCtrl.value || '');
+    
+    // Update filtered games
+    this.updateFilteredGames();
   }
-
+  
+  private updateFilteredGames(): void {
+    // If no genres or platforms are selected, show all games
+    if (this.selectedGenres.length === 0 && this.selectedPlatforms.length === 0) {
+      this.filteredGames = this.games;
+    } else {
+      this.filterGames(this.searchTermCtrl.value || '');
+    }
+  }
+  
   onSearchTermChange(searchTerm: string): void {
     this.filterGames(searchTerm || '');
   }
