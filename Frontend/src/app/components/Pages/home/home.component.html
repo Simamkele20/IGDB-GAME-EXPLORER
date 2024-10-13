@@ -2,7 +2,32 @@
 <div class="home-container">
   <h5>Welcome to IGDB GAME EXPLORER</h5>
 
-  <ng-container *ngIf="games.length > 0; else noGames">
+  <div class="toggle-container">
+    <mat-button-toggle-group name="genres" (change)="toggleGenre($event.value)">
+      <mat-button-toggle
+        *ngFor="let genre of uniqueGenres"
+        [value]="genre"
+        [checked]="selectedGenres.includes(genre)"
+      >
+        {{ genre }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+
+    <mat-button-toggle-group
+      name="platforms"
+      (change)="togglePlatform($event.value)"
+    >
+      <mat-button-toggle
+        *ngFor="let platform of uniquePlatforms"
+        [value]="platform"
+        [checked]="selectedPlatforms.includes(platform)"
+      >
+        {{ platform }}
+      </mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+
+  <ng-container *ngIf="filteredGames.length > 0; else noGames">
     <div class="game-list">
       <div class="game-container">
         <div class="game-item" *ngFor="let game of filteredGames">
@@ -23,6 +48,6 @@
   </ng-container>
 
   <ng-template #noGames>
-    <h2>No games available</h2>
+    <h2>No games found matching your criteria.</h2>
   </ng-template>
 </div>

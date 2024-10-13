@@ -1,4 +1,3 @@
-/* Universal Selector */
 *,
 *::before,
 *::after {
@@ -12,6 +11,18 @@
 .GameName {
   color: #a9caf8;
   font-weight: bold;
+}
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
+  color: antiquewhite;
+}
+
+mat-button-toggle-group {
+  display: flex;
 }
 
 a {
@@ -35,11 +46,8 @@ img {
 
 .game-container {
   display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  ); /* Creates responsive grid */
-  gap: 70px; /* Space between items */
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 70px;
 }
 
 .game-item {

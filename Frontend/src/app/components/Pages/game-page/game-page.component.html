@@ -1,4 +1,6 @@
-<div class="game-container" *ngIf="game">
+<app-header (searchTermChange)="onSearchTermChange($event)"></app-header>
+
+<div class="game-container" *ngIf="game; else loading">
   <div class="game-item">
     <img
       [src]="
@@ -12,9 +14,12 @@
     <p *ngIf="game.release_dates && game.release_dates.length > 0">
       {{ game.release_dates[0].human }}
     </p>
-
     <p *ngIf="!game.release_dates || game.release_dates.length === 0">
       Not yet released.
     </p>
   </div>
 </div>
+
+<ng-template #loading>
+  <div>Loading game details...</div>
+</ng-template>

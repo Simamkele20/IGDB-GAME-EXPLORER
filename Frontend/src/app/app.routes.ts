@@ -6,6 +6,6 @@ export const routes: Routes = [
   { path: '', redirectTo: '/games', pathMatch: 'full' },
   { path: 'games', component: HomeComponent },
   { path: 'search/:searchTerm', component: HomeComponent },
-  {path: 'games/:id', component: GamePageComponent},
+  { path: 'games/:id', component: GamePageComponent },
   { path: '**', redirectTo: '/games' },
 ];

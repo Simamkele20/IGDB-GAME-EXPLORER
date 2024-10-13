@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { map, startWith, filter } from 'rxjs/operators';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { AsyncPipe } from '@angular/common';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -32,8 +32,21 @@ export class HeaderComponent {
   searchTermCtrl = new FormControl('');
   @Output() searchTermChange = new EventEmitter<string>();
   filteredGames$?: Observable<any[]>;
-
-  constructor(private route: Router) {}
+  isSearchDisabled: boolean = false;
+  constructor(private route: Router) {
+    this.route.events
+      .pipe(
+        filter(
+          (event): event is NavigationEnd => event instanceof NavigationEnd
+        )
+      )
+      .subscribe(() => {
+        const currentUrl = this.route.url;
+        const parts = currentUrl.split('/');
+        this.isSearchDisabled =
+          currentUrl.startsWith('/games/') && parts.length === 3;
+      });
+  }
 
   ngOnInit(): void {
     this.setupAutocomplete();

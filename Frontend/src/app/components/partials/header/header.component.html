@@ -1,6 +1,8 @@
 <header>
-  <div>
+  <div class="IGDB">
     <a href="">IGDB GAME EXPLORER</a>
+  </div>
+  <div class="form">
     <mat-form-field appearance="fill">
       <mat-label>Search Game</mat-label>
       <input
@@ -8,7 +10,9 @@
         [formControl]="searchTermCtrl"
         placeholder="Search Games..."
         (keyup)="searchTermChange.emit(searchTermCtrl.value || '')"
+        [readonly]="isSearchDisabled"
       />
     </mat-form-field>
   </div>
+  <div></div>
 </header>
