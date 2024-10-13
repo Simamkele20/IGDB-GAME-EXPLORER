@@ -8,6 +8,7 @@ import { RouterOutlet, RouterModule } from '@angular/router';
 import { HeaderComponent } from '../../partials/header/header.component';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatCardModule } from '@angular/material/card';
 
 export interface ReleaseDate {
   id: number;
@@ -26,6 +27,7 @@ export interface ReleaseDate {
     HeaderComponent,
     FormsModule,
     MatButtonToggleModule,
+    MatCardModule,
   ],
 })
 export class HomeComponent implements OnInit, OnDestroy {
@@ -57,6 +59,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.extractUniqueReleaseYears();
     });
   }
+  getGenres(game: Game): string {
+    return game.genres
+      ? game.genres.map((genre) => genre.name).join(', ')
+      : 'No genres available';
+  }
 
   extractUniqueGenres(): void {
     const genresSet = new Set<string>();
@@ -67,7 +74,11 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
     this.uniqueGenres = Array.from(genresSet);
   }
-
+  getPlatforms(game: Game): string {
+    return game.platforms
+      ? game.platforms.map((platform) => platform.name).join(', ')
+      : 'No platforms available';
+  }
   extractUniquePlatforms(): void {
     const platformsSet = new Set<string>();
     this.games.forEach((game) => {

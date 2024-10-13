@@ -8,41 +8,35 @@
 
 header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem;
+  justify-content: center;
+  align-items: center; 
+  padding: 1rem 15px;
+  padding-top: 30px; 
   height: 80px;
+  background-color: #0b192c; 
 }
 
-header div {
+.form {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: center; 
+  width: 100%;
 }
 
 mat-form-field {
   flex: 1;
   min-width: 200px;
-  max-width: 600px;
-  padding-top: 20px;
-  height: 80px;
-}
-
-.mat-form-field {
-  width: 100%;
+  max-width: 600px; /* Adjusted for better responsiveness */
+  margin: 0 auto; /* Center the form field */
 }
 
 input {
   height: 100%;
+  text-align: center; 
 }
 
-a {
-  margin-left: 20px;
-  text-decoration: none;
-  color: #a9caf8;
-  font-weight: bold;
+@media (max-width: 600px) {
+  mat-form-field {
+    max-width: 100%; 
+  }
 }
-header {
-  margin-top: -5px;
-  padding: 15px;
-  background-color: #0b192c;
-}
+

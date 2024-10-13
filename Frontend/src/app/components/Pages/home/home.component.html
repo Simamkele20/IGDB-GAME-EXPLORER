@@ -29,21 +29,44 @@
 
   <ng-container *ngIf="filteredGames.length > 0; else noGames">
     <div class="game-list">
-      <div class="game-container">
-        <div class="game-item" *ngFor="let game of filteredGames">
-          <a [routerLink]="['/games/', game.id]">
-            <img
-              [src]="
-                game.cover
-                  ? 'https:' + game.cover.url
-                  : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
-              "
-              alt="{{ game.name }} cover"
-            />
-            <p class="GameName">{{ game.name }}</p>
-          </a>
+      <ng-container *ngIf="filteredGames.length > 0; else noGames">
+        <div class="game-list">
+          <mat-card
+            *ngFor="let game of filteredGames"
+            class="game-item"
+            style="width: 300px"
+          >
+            <a [routerLink]="['/games/', game.id]">
+              <img
+                [src]="
+                  game.cover
+                    ? 'https:' + game.cover.url.replace('thumb', '1080p')
+                    : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
+                "
+                alt="{{ game.name }} cover"
+                style="width: 300px; height: 300px"
+              />
+              <mat-card-title>{{ game.name }}</mat-card-title>
+              <mat-card-subtitle
+                ><span class="Headings">Genres:</span>
+                {{ getGenres(game) }}</mat-card-subtitle
+              >
+              <mat-card-content>
+                <p>
+                  <span class="Headings">Platforms:</span>
+                  {{ getPlatforms(game) }}
+                </p>
+                <p>
+                  <span class="Headings">Summary:</span>
+                  {{
+                    game.summary ? game.summary : "The game is not yet released"
+                  }}
+                </p>
+              </mat-card-content>
+            </a>
+          </mat-card>
         </div>
-      </div>
+      </ng-container>
     </div>
   </ng-container>
 
