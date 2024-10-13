@@ -1,18 +1,14 @@
 <header>
   <div>
     <a href="">IGDB GAME EXPLORER</a>
-    <form (ngSubmit)="searchGame()" class="example-form">
-      <mat-form-field class="example-full-width">
-        <mat-label>Search Games</mat-label>
-        <input
-          matInput
-          aria-label="Search"
-          [formControl]="searchTermCtrl"
-          (keyup.enter)="searchGame()" 
-          placeholder="Search Games..."
-        />
-      </mat-form-field>
-      <button mat-raised-button color="primary" type="submit">Search</button>
-    </form>
+    <mat-form-field appearance="fill">
+      <mat-label>Search Game</mat-label>
+      <input
+        matInput
+        [formControl]="searchTermCtrl"
+        placeholder="Search Games..."
+        (keyup)="searchTermChange.emit(searchTermCtrl.value || '')"
+      />
+    </mat-form-field>
   </div>
 </header>

@@ -10,7 +10,14 @@
   display: none;
 }
 
-
-body{
+body {
   background-color: #1e3e62;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
 }

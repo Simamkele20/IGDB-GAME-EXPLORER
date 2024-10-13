@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -9,7 +9,6 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
-
 
 @Component({
   selector: 'app-header',
@@ -28,31 +27,42 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  @Input() games: any[] = []; // Accepting games as an input property
+  @Input() games: any[] = [];
+  @Output() searchInitiated = new EventEmitter<string>();
   searchTermCtrl = new FormControl('');
+  @Output() searchTermChange = new EventEmitter<string>();
   filteredGames$?: Observable<any[]>;
 
   constructor(private route: Router) {}
 
   ngOnInit(): void {
     this.setupAutocomplete();
+    const searchTerm = this.searchTermCtrl.value ?? '';
+    this.searchInitiated.emit(searchTerm);
   }
 
   setupAutocomplete(): void {
     this.filteredGames$ = this.searchTermCtrl.valueChanges.pipe(
       startWith(''),
-      map(value => this._filterGames(value ?? '')) // Use nullish coalescing operator
+      map((value) => this._filterGames(value ?? ''))
     );
   }
   private _filterGames(value: string): any[] {
     const filterValue = value.toLowerCase();
-    return this.games.filter(game => game.name.toLowerCase().includes(filterValue)); // Now accessible
+    return this.games.filter((game) =>
+      game.name.toLowerCase().includes(filterValue)
+    );
   }
 
   searchGame(): void {
-    const searchTerm = this.searchTermCtrl.value;
+    const searchTerm = this.searchTermCtrl.value ?? '';
+    this.searchTermChange.emit(searchTerm);
+    console.log('Search term:', searchTerm);
     if (searchTerm) {
-      this.route.navigate(['/search'], { queryParams: { searchTerm: searchTerm } });
+      console.log('Navigating to search with term:', searchTerm);
+      this.route.navigate(['/search'], {
+        queryParams: { searchTerm: searchTerm },
+      });
     } else {
       console.log('Search term is empty');
     }

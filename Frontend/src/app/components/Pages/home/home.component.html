@@ -1,11 +1,11 @@
-
+<app-header (searchTermChange)="onSearchTermChange($event)"></app-header>
 <div class="home-container">
   <h5>Welcome to IGDB GAME EXPLORER</h5>
 
   <ng-container *ngIf="games.length > 0; else noGames">
     <div class="game-list">
       <div class="game-container">
-        <div class="game-item" *ngFor="let game of filteredGames$ | async">
+        <div class="game-item" *ngFor="let game of filteredGames">
           <a [routerLink]="['/games/', game.id]">
             <img
               [src]="
