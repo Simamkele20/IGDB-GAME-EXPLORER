@@ -20,7 +20,7 @@
   Games_URL: 'https://igdb-game-explorer.onrender.com/games',
   clientId: '0oahrr9tqq4ez9uc2170n9pgvhk8v1',
   MultiQuery_URL: 'https://igdb-game-explorer.onrender.com/multiquery'
-};
+}; 
 
 8. Run the Frontend Server (npm start)
 
