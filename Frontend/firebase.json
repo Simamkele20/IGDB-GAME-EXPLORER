@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/frontend",
+    "public": "dist/browser/games",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -14,3 +14,4 @@
     ]
   }
 }
+

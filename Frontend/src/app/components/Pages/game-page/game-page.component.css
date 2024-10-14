@@ -28,7 +28,7 @@
 .back:hover {
   background-color: rgba(21, 23, 38, 0.1);
 }
-.GameNamem,
+
 .GameName {
   color: #a9caf8;
   font-weight: bold;
@@ -44,7 +44,6 @@
   text-align: center;
   display: flex;
   flex-direction: row;
-  padding-top: 30px;
   align-items: start;
   background-color: #1e3e62;
   border-radius: 8px;
