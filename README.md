@@ -1,4 +1,3 @@
-
 ## Backend
 
 1. Navigate to the backend directory (cd Backend)
@@ -8,7 +7,9 @@
 API_URL= https://id.twitch.tv/oauth2/token
 CLIENT_ID= 0oahrr9tqq4ez9uc2170n9pgvhk8v1
 CLIENT_SECRECT=  mpr6zg1zod5dckzmumdz0ypi3muvqg
-API = https://api.igdb.com/v4/games
+API = https://api.igdb.com/v4/multiquery
+MultiQuery_URL =  https://api.igdb.com/v4/multiquery
+PORT = 3300
 
 4. Run the Backend Server (npm start)
 
@@ -17,4 +18,4 @@ API = https://api.igdb.com/v4/games
 
 ## Access the Application
 
-Open your web browser and go to http://localhost:3000 to view the application. The frontend should communicate with the backend seamlessly.
+Open your web browser and go to http://localhost:3000 to view the application.
