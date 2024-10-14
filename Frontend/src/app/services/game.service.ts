@@ -8,7 +8,7 @@ import { GameResponse } from '../shared/models/game';
   providedIn: 'root',
 })
 export class GameService {
-  private apiUrl = `${environment.Games_URL}`;
+  private apiUrl= `${environment.Games_URL}`;
   private searchUrl = `${environment.MultiQuery_URL}`;
 
   constructor(private http: HttpClient) {}
