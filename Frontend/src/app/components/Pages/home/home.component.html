@@ -5,79 +5,102 @@
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
   <div *ngIf="!loading">
-
-  <div class="toggle-container">
-    <mat-button-toggle-group name="genres" (change)="toggleGenre($event.value)">
-      <mat-button-toggle
-        *ngFor="let genre of uniqueGenres"
-        [value]="genre"
-        [checked]="selectedGenres.includes(genre)"
+    <div class="toggle-container">
+      <mat-button-toggle-group
+        name="genres"
+        (change)="toggleGenre($event.value)"
+        aria-label="Select Genre"
       >
-        {{ genre }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
+        <mat-button-toggle
+          *ngFor="let genre of uniqueGenres"
+          [value]="genre"
+          [checked]="selectedGenres.includes(genre)"
+        >
+          {{ genre }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
 
-    <mat-button-toggle-group
-      name="platforms"
-      (change)="togglePlatform($event.value)"
-    >
-      <mat-button-toggle
-        *ngFor="let platform of uniquePlatforms"
-        [value]="platform"
-        [checked]="selectedPlatforms.includes(platform)"
+      <mat-button-toggle-group
+        name="platforms"
+        (change)="togglePlatform($event.value)"
+        aria-label="Select Platform"
       >
-        {{ platform }}
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-  </div>
-
-  <ng-container *ngIf="filteredGames.length > 0; else noGames">
-    <div class="game-list">
-      <ng-container *ngIf="filteredGames.length > 0; else noGames">
-        <div class="game-list">
-          <mat-card
-            *ngFor="let game of filteredGames"
-            class="game-item"
-            style="width: 300px"
-          >
-            <a [routerLink]="['/games/', game.id]">
-              <img
-                [src]="
-                  game.cover
-                    ? 'https:' + game.cover.url.replace('thumb', '1080p')
-                    : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
-                "
-                alt="{{ game.name }} cover"
-                style="width: 300px; height: 300px"
-              />
-              <mat-card-title>{{ game.name }}</mat-card-title>
-            
-              <mat-card-content>
-                <p>
-                  <span class="Headings">Genres:</span> {{ getGenres(game) }}
-                </p>
-                <p>
-                  <span class="Headings">Platforms:</span>
-                  {{ getPlatforms(game) }}
-                </p>
-                <p>
-                  <span class="Headings">Summary:</span>
-                  {{
-                    game.summary ? game.summary : "The game is not yet released"
-                  }}
-                </p>
-              </mat-card-content>
-            </a>
-          </mat-card>
-        </div>
-      </ng-container>
+        <mat-button-toggle
+          *ngFor="let platform of uniquePlatforms"
+          [value]="platform"
+          [checked]="selectedPlatforms.includes(platform)"
+        >
+          {{ platform }}
+        </mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
-  </ng-container>
+    <div
+      class="resetCon"
+      *ngIf="selectedGenres.length > 0 || selectedPlatforms.length > 0"
+    >
+      <button class="reset" mat-button (click)="resetSelections()">
+        Reset Filter
+      </button>
+    </div>
+    <div class="button-container">
+      <mat-button-toggle-group
+        [(value)]="sortOrder"
+        (change)="toggleSortOrder($event.value)"
+      >
+        <mat-button-toggle value="asc">A-Z</mat-button-toggle>
+        <mat-button-toggle value="desc">Z-A</mat-button-toggle>
+      </mat-button-toggle-group>
+    </div>
+    <div *ngIf="filteredGames.length === 0" class="error">
+      <p>
+        No games found. Please try a different search term or adjust your
+        filters.
+      </p>
+    </div>
 
-  
+    <ng-container *ngIf="filteredGames.length > 0">
+      <div class="game-list">
+        <ng-container *ngIf="filteredGames.length > 0">
+          <div class="game-list">
+            <mat-card
+              *ngFor="let game of filteredGames"
+              class="game-item"
+              style="width: 300px"
+            >
+              <a [routerLink]="['/games/', game.id]">
+                <img
+                  [src]="
+                    game.cover
+                      ? 'https:' + game.cover.url.replace('thumb', '1080p')
+                      : 'https://i.ibb.co/pzgS2h4/placeholder-90x90.png'
+                  "
+                  alt="{{ game.name }} cover"
+                  style="width: 300px; height: 300px"
+                />
+                <mat-card-title>{{ game.name }}</mat-card-title>
 
-  <ng-template #noGames>
-    <h2>No games found matching your criteria.</h2>
-  </ng-template>
-</div>
+                <mat-card-content>
+                  <p>
+                    <span class="Headings">Genres:</span> {{ getGenres(game) }}
+                  </p>
+                  <p>
+                    <span class="Headings">Platforms:</span>
+                    {{ getPlatforms(game) }}
+                  </p>
+                  <p>
+                    <span class="Headings">Summary:</span>
+                    {{
+                      game.summary
+                        ? game.summary
+                        : "The game is not yet released"
+                    }}
+                  </p>
+                </mat-card-content>
+              </a>
+            </mat-card>
+          </div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
 </div>

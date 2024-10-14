@@ -4,7 +4,7 @@ import { GameService } from '../../../services/game.service';
 import { CommonModule } from '@angular/common';
 import { Game } from '../../../shared/models/game';
 import { GameResponse } from '../../../shared/models/game';
-import { RouterOutlet, RouterModule } from '@angular/router';
+import { RouterOutlet, RouterModule, Router } from '@angular/router';
 import { HeaderComponent } from '../../partials/header/header.component';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -35,6 +35,7 @@ export interface ReleaseDate {
 export class HomeComponent implements OnInit, OnDestroy {
   games: Game[] = [];
   filteredGames: Game[] = [];
+  sortedGames: Game[] = [];
   selectedGenres: string[] = [];
   selectedPlatforms: string[] = [];
   selectedReleaseYears: string[] = [];
@@ -46,7 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   searchTermCtrl = new FormControl('');
 
-  constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadGames();
@@ -57,6 +58,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.gameService.fetchGames().subscribe((response: GameResponse) => {
       this.games = response.data[0].result;
       this.filteredGames = this.games;
+      this.sortGames();
       this.loading = false;
       this.extractUniqueGenres();
       this.extractUniquePlatforms();
@@ -140,42 +142,63 @@ export class HomeComponent implements OnInit, OnDestroy {
   toggleGenre(genre: string): void {
     const index = this.selectedGenres.indexOf(genre);
     if (index >= 0) {
-      // Remove genre if it's already selected
       this.selectedGenres.splice(index, 1);
     } else {
-      // Add genre to selected genres
       this.selectedGenres.push(genre);
     }
-    
-    // Update filtered games
+
     this.updateFilteredGames();
   }
-  
+
   togglePlatform(platform: string): void {
     const index = this.selectedPlatforms.indexOf(platform);
     if (index >= 0) {
-      // Remove platform if it's already selected
       this.selectedPlatforms.splice(index, 1);
     } else {
-      // Add platform to selected platforms
       this.selectedPlatforms.push(platform);
     }
-    
-    // Update filtered games
+
     this.updateFilteredGames();
   }
-  
+
   private updateFilteredGames(): void {
-    // If no genres or platforms are selected, show all games
-    if (this.selectedGenres.length === 0 && this.selectedPlatforms.length === 0) {
+    if (
+      this.selectedGenres.length === 0 &&
+      this.selectedPlatforms.length === 0
+    ) {
       this.filteredGames = this.games;
     } else {
       this.filterGames(this.searchTermCtrl.value || '');
     }
   }
-  
+  resetSelections(): void {
+    this.selectedGenres = [];
+    this.selectedPlatforms = [];
+    this.filteredGames = this.games;
+    this.sortedGames = this.games;
+  }
+
   onSearchTermChange(searchTerm: string): void {
     this.filterGames(searchTerm || '');
+  }
+  sortOrder: 'asc' | 'desc' = 'asc';
+  toggleSortOrder(order: 'asc' | 'desc'): void {
+    this.sortOrder = order;
+    this.sortGames();
+  }
+
+  private sortGames(): void {
+    this.sortedGames = [...this.filteredGames];
+    this.filteredGames.sort((a, b) => {
+      const nameA = a.name.toLowerCase();
+      const nameB = b.name.toLowerCase();
+
+      if (this.sortOrder === 'asc') {
+        return nameA < nameB ? -1 : nameA > nameB ? 1 : 0; // A-Z
+      } else {
+        return nameA > nameB ? -1 : nameA < nameB ? 1 : 0; // Z-A
+      }
+    });
   }
 
   ngOnDestroy(): void {

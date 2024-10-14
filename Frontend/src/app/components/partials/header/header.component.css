@@ -9,16 +9,16 @@
 header {
   display: flex;
   justify-content: center;
-  align-items: center; 
+  align-items: center;
   padding: 1rem 15px;
-  padding-top: 30px; 
+  padding-top: 30px;
   height: 80px;
-  background-color: #0b192c; 
+  background-color: #0b192c;
 }
 
 .form {
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   width: 100%;
 }
 
@@ -31,12 +31,11 @@ mat-form-field {
 
 input {
   height: 100%;
-  text-align: center; 
+  text-align: center;
 }
 
 @media (max-width: 600px) {
   mat-form-field {
-    max-width: 100%; 
+    max-width: 100%;
   }
 }
-

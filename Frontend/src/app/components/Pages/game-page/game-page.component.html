@@ -3,55 +3,59 @@
   <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 </div>
 <div *ngIf="!loading">
+  <div *ngIf="game">
+    <h3 class="GameName">{{ game.name }}</h3>
+  </div>
   <div class="game-container" *ngIf="game">
     <div class="game-item">
       <div class="game-image">
         <img
           [src]="
             game.cover
-              ? 'https:' + game.cover.url.replace('thumb', 'cover_big')
+              ? 'https:' + game.cover.url.replace('thumb', '1080p')
               : 'https://i.ibb.co/Xx8MWN1/placeholder-264x374.png'
           "
           alt="{{ game.name }} cover"
+          style="width: 300px; height: 300px"
         />
       </div>
+
       <div class="game-info">
-        <h3 class="GameName">{{ game.name }}</h3>
-    
         <h4>Release Dates:</h4>
         <ul>
-          <li *ngFor="let release of game.release_dates">{{ release.human }}</li>
+          <li *ngFor="let releaseDate of getRealeaseDates(game)">
+            {{ releaseDate }}
+          </li>
         </ul>
-    
+
         <h4>Game Modes:</h4>
         <ul>
-          <li *ngFor="let mode of game.game_modes">{{ mode.name }}</li>
+          <li *ngFor="let gameMode of getGameModes(game)">{{ gameMode }}</li>
         </ul>
-    
+
         <h4>Genres:</h4>
         <ul>
-          <li *ngFor="let genre of game.genres">{{ genre.name }}</li>
+          <li *ngFor="let gameGenre of getGenres(game)">{{ gameGenre }}</li>
         </ul>
-    
+
         <h4>Platforms:</h4>
         <ul>
-          <li *ngFor="let platform of game.platforms">{{ platform.name }}</li>
+          <li *ngFor="let gamePlatfrom of getPlatforms(game)">
+            {{ gamePlatfrom }}
+          </li>
         </ul>
-    
-        <h4>User Rating:</h4>
-        <div>
-          <span *ngFor="let star of [1, 2, 3, 4, 5]">
-            <i class="fa" [ngClass]="{'fa-star': star <= userRating, 'fa-star-o': star > userRating}"></i>
-          </span>
-          <p *ngIf="game?.rating_count">({{ game.rating_count }} ratings)</p>
-        </div>
+
+        <h4>Websites:</h4>
+        <ul>
+          <li *ngFor="let website of game.websites" class="website-link">
+            <a [href]="website.url">{{ website.url }} </a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
 
   <div class="button-container">
-    <button (click)="goBack()">Go Back</button>
+    <button class="back" (click)="goBack()">Go Back</button>
   </div>
-
-  
 </div>
