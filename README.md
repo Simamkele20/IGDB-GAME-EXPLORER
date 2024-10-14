@@ -5,7 +5,8 @@
 2. Install dependencies (npm install)
 3. create folder under src  name it environment
 4. under it create a file name it environment.ts and inside it write
-   export const environment = {
+
+    export const environment = {
   production: false,
   apiUrl: 'https://igdb-game-explorer.onrender.com',
   clientId: '0oahrr9tqq4ez9uc2170n9pgvhk8v1',
