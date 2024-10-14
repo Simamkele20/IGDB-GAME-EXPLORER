@@ -1,7 +1,3 @@
-## Instructions on how to run the application (frontend and backend).
-## First Clone the Repository  if you have`nt cloned it yet.
-
-https://github.com/Simamkele20/IGDB-GAME-EXPLORER.git
 
 ## Backend
 
